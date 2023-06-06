@@ -1,0 +1,28 @@
+# On executing msconfig, without appropriate UAC settings enforced (ALWAYS NOTIFY) azman will default to auto-elevate, setting the integrity level to High, 
+By Navigating to Help -> Help Topics -> (Right Click and select View Source) will open a notepad, which can be 'escaped' by File -> Open
+title: azman-UAC-Bypass.sigma
+id: 
+status: Testing
+description: On executing msconfig, without appropriate UAC settings enforced (ALWAYS NOTIFY) msconfig will default to auto-elevate, setting the integrity level to High, from here within the Tools section 'Comamnd Prompt' can be launched and will run with a high IL token
+references:
+    - https://twitter.com/empise_/status/1665886182213918721/photo/1
+author: Kynan Jones
+date: 2023/06/06
+tags:
+    - attack.defense_evasion
+    - attack.privilege_escalation
+logsource:
+    category: process_creation
+    product: windows
+detection:
+    selection:
+        ParentProcess: 'notepad.exe'
+    selection1|endswith:
+      Process: 'cmd.exe'
+      Process: '.exe' # Will require numerous + this may be chained to various more attacks due to notepad being PP.
+      
+    condition: selection AND any of selection1
+    
+falsepositives:
+    - Unknown
+level: medium 
