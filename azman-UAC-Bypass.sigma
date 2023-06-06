@@ -5,7 +5,7 @@ id:
 status: Testing
 description: On executing msconfig, without appropriate UAC settings enforced (ALWAYS NOTIFY) msconfig will default to auto-elevate, setting the integrity level to High, from here within the Tools section 'Comamnd Prompt' can be launched and will run with a high IL token
 references:
-    - https://twitter.com/empise_/status/1665886182213918721/photo/1
+    - https://twitter.com/empise_/status/1665889026677649415/photo/1
 author: Kynan Jones
 date: 2023/06/06
 tags:
