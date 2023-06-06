@@ -28,4 +28,4 @@ detection:
     
 falsepositives:
     - Unknown
-level: high
+level: medium 
