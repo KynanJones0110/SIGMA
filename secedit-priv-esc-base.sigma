@@ -1,5 +1,5 @@
 id: UCXX-XX
-title: CertOc-Abuse
+title: SecEdit-PrivEsc
 status: development
 version: 1.0
 description: Tracks exporting, converting or importing of privilege configuration file which can be exported and modified with the right permissions (SeBackupPrivilege, SeRestorePrivilege) used to escalate privileges without modifying any group membership
