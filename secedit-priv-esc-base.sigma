@@ -2,53 +2,45 @@ id: UCXX-XX
 title: CertOc-Abuse
 status: development
 version: 1.0
-description: Tracks exporting, converting or importing of privilege configuration file which can be used to ... 
-author: 
+description: Tracks exporting, converting or importing of privilege configuration file which can be exported and modified with the right permissions (SeBackupPrivilege, SeRestorePrivilege) used to escalate privileges without modifying any group membership
+author: Kynan Jones
 reference: 
-    - https://attack.mitre.org/techniques/T1105/
-    - https://lolbas-project.github.io/lolbas/Binaries/Certoc/
+    - xxx
+    - xxx
 logsource:
     category: endpoint
     product: windows
     service: /os/process/create
 detection:
     selection:
-        process_name:
-        - 'secedit.exe'
+        process_path:
+        - 'C:\\Windows\\System32\\SecEdit.exe'
     selection1:
         process|contains|all:
         - '/cfg '
         - '.inf'
-        - '.sdb'
     selection2:
         process|contains:
         - '/export '
+    selection3:
+        process|contains:
         - '/configure '
+        - '.sdb'
+        - '/db '
+    selection4:
+        process|contains:
         - '/import '
-        
-    condition: ALL ofselection AND selection1 AND any of selection2
-    
+        - '.sdb'
+        - '/db '     
+    condition: selection AND selection1 AND selection2 OR selection3 OR selection4 
 fields:
-    - _time
-    - event_category
-    - user_nt_domain
-    - parent_process
-    - parent_process_guid
-    - parent_process_path
-    - process
-    - process_current_directory
-    - process_hash
-    - process_id
-    - process_guid  
-aggregation:
-    fields:
-    - user
-    - dest
+//
+//
 falsepositives: Legitimate analysis of system security by comparing your current security configuration against specified security templates.
 severity: 3
-lookup: no
+//
 tags:
-    - attack.command_and_control
-    - attack.defense_evasion
-    - attack.t1105
-    - attack.t1218
+    - attack.command_xx
+    - attack.defense_exx
+    - attack.t1xx
+    - attack.t1xx
